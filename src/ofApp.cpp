@@ -1,7 +1,7 @@
 #include "ofApp.h"
 
 //--------------------------------------------------------------
-ofApp::ofApp():toio_controller0_("/toio1"){
+ofApp::ofApp():toio_controller0_("/toio1"), toio_controller1_("/toio2"){
 }
 
 void ofApp::setup(){
@@ -9,8 +9,6 @@ void ofApp::setup(){
     ofSetFrameRate(30);
     ofSetVerticalSync(true);
     ofEnableSmoothing();
-    
-    img_.load("quad_warp_kittens.png");
 
     fbo0_.allocate(800, 800);
     warper0_.setSourceRect(ofRectangle(0, 0, 800, 800));              // this is the source rectangle which is the size of the image and located at ( 0, 0 )
@@ -19,7 +17,7 @@ void ofApp::setup(){
     warper0_.setBottomLeftCornerPosition(ofPoint(0, 800));      // this is position of the quad warp corners, centering the image on the screen.
     warper0_.setBottomRightCornerPosition(ofPoint(800, 800)); // this is position of the quad warp corners, centering the image on the screen.
     warper0_.setup();
-    // warper0_.load(); // reload last saved changes.
+    warper0_.load(); // reload last saved changes.
 
     // fbo1_.allocate(w, h);
     // warper1_.setSourceRect(ofRectangle(0, 0, w, h));              // this is the source rectangle which is the size of the image and located at ( 0, 0 )
@@ -29,42 +27,77 @@ void ofApp::setup(){
     // warper1_.setBottomRightCornerPosition(ofPoint(x + w, y + h)); // this is position of the quad warp corners, centering the image on the screen.
     // warper1_.setup();
 
+    global_counter_ = 0;
+    play_ = true;
 }
 
 //--------------------------------------------------------------
 void ofApp::update(){
-    
-    if(ofGetFrameNum() == 0){
+    int fps = 30;
+
+    if(global_counter_ == 0 * fps){
         background_controller_.setup("background/table.jpg");
+        toio_controller0_.setup(ToioMoveType::G1);
+        toio_controller1_.setup(ToioMoveType::B1);
     }
-    if(ofGetFrameNum() == 10){
-        toio_controller0_.setup(ToioMoveType::G0);
-    }
-    if(ofGetFrameNum() == 30) {
+    else if(global_counter_ == 1.0 * fps){
+        toio_controller0_.setup(ToioMoveType::G2);
+        toio_controller1_.setup(ToioMoveType::B2);
         letter_controller_.setup();
     }
-    if(ofGetFrameNum() == 90){
-        toio_controller0_.setup(ToioMoveType::G1);
+    else if(global_counter_ == 4.0 * fps){
+        toio_controller0_.setup(ToioMoveType::G3);
+        toio_controller1_.setup(ToioMoveType::B3);
     }
-	if(ofGetFrameNum() == 120){
-        fukidashi_controller0_.setup(FukidashiType::N1L, "こんにちは");
+	else if(global_counter_ == 7.0 * fps){
+        fukidashi_controller0_.setup(FukidashiType::N1R, "こんにちは\nえりおです");
     }
-	if(ofGetFrameNum() == 150){
-        fukidashi_controller1_.setup(FukidashiType::N1R, "こんにちは\naaaa");
+	else if(global_counter_ == 7.5 * fps){
+        fukidashi_controller1_.setup(FukidashiType::N1L, "こんにちは\nいちこです");
     }
-	if(ofGetFrameNum() == 180){
+	else if(global_counter_ == 10.0 * fps){
+        fukidashi_controller0_.setup(FukidashiType::N1R, "ぼくたちの思い出を\n紹介します");
+    }
+	else if(global_counter_ == 10.5 * fps){
+        fukidashi_controller1_.setup(FukidashiType::N1L, "どうぞ\nごらんください");
+    }
+    else if(global_counter_ == 14.0 * fps){
+        toio_controller0_.setup(ToioMoveType::G4);
+        toio_controller1_.setup(ToioMoveType::B4);
+    }
+	else if(global_counter_ == 18.0 * fps){
         photo_controller_.setup("picture/pic_01.jpg");
-    }
-	if(ofGetFrameNum() == 210){
         background_controller_.setup("background/spring.jpg");
+        toio_controller0_.setup(ToioMoveType::G3);
+        toio_controller1_.setup(ToioMoveType::B3);
+    }
+	else if(global_counter_ == 19.0 * fps){
+        fukidashi_controller0_.setup(FukidashiType::N1R, "ミッフィーカフェ");
+    }
+	else if(global_counter_ == 19.5 * fps){
+        fukidashi_controller1_.setup(FukidashiType::N1L, "ミッフィーのほうが\n高い.....");
+    }
+	else if(global_counter_ == 23.0 * fps){
+        photo_controller_.setup("picture/pic_02.jpg");
+        background_controller_.setup("background/summer.jpg");
+    }
+	else if(global_counter_ == 24.0 * fps){
+        fukidashi_controller0_.setup(FukidashiType::N1R, "闇のクレーンゲーム");
+    }
+	else if(global_counter_ == 24.5 * fps){
+        fukidashi_controller1_.setup(FukidashiType::N1L, "３０００円\n吸われました");
     }
 
     background_controller_.update();
     letter_controller_.updata();
     photo_controller_.update();
     toio_controller0_.update();
+    toio_controller1_.update();
     fukidashi_controller0_.update();
     fukidashi_controller1_.update();
+    if(play_){
+        global_counter_++;
+    }
 }
 
 //--------------------------------------------------------------
@@ -75,17 +108,20 @@ void ofApp::draw(){
     
     fbo0_.begin();
     ofClear(255,255,255, 0);
-    // img_.draw(0, 0);
     background_controller_.draw();
     letter_controller_.draw();
     photo_controller_.draw();
     fukidashi_controller0_.draw();
     fukidashi_controller1_.draw();
     toio_controller0_.draw();
+    toio_controller1_.draw();
+    if(!play_){
+        ofSetColor(255, 0, 0);
+        ofCircle(400, 750, 30); 
+    }
     fbo0_.end();
 
     // fbo1_.begin();
-    // img_.draw(0, 0);
     // fbo1_.end();
 
     //======================== get our quad warp matrix.
@@ -151,9 +187,19 @@ void ofApp::draw(){
 //--------------------------------------------------------------
 void ofApp::keyPressed(int key){
   switch (key) {
+    case 'r':
+        printf("#### reset ####\n");
+        global_counter_ = 0;
+        break;
+    case ' ':
+        printf("#### play ####\n");
+        play_ = !play_;
+        break;
     case 'q':
-    printf("############# end ###########\n");
-    OF_EXIT_APP(0);
+        printf("#### end ####\n");
+        warper0_.save();
+        OF_EXIT_APP(0);
+        break;
   }
 }
 

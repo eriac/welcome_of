@@ -9,7 +9,9 @@ enum class FukidashiType { N1R, N1L };
 
 class FukidashiController{
 public:
-    FukidashiController(void){ }
+    FukidashiController(void){
+        enable_ = false;
+     }
 
     void setup(FukidashiType type, std::string text){
         enable_ = true;
@@ -31,7 +33,7 @@ public:
         }
 
         duration1_ = 0.2;
-        duration2_ = 3.0;
+        duration2_ = 2.6;
         duration3_ = 0.2;
 
         font_.load("verdana.ttf", 24);

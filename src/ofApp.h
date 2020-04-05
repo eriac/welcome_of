@@ -27,12 +27,13 @@ class ofApp : public ofBaseApp{
 		void dragEvent(ofDragInfo dragInfo);
 		void gotMessage(ofMessage msg);
 
-		ofImage img_;
-
 		ofxQuadWarp warper0_;
 		ofFbo fbo0_;
 		ofxQuadWarp warper1_;
 		ofFbo fbo1_;
+
+		int global_counter_;
+		bool play_;
 
 		BackGroundController background_controller_;
 		LetterController letter_controller_;
@@ -40,4 +41,5 @@ class ofApp : public ofBaseApp{
 		FukidashiController fukidashi_controller0_;
 		FukidashiController fukidashi_controller1_;
 		ToioController toio_controller0_;
+		ToioController toio_controller1_;
 };

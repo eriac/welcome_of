@@ -16,6 +16,11 @@ public:
         duration1_ = 2.0;
         duration2_ = 6.0;
         duration3_ = 2.0;
+
+        center_x_ = 400;
+        center_y_ = 500;
+        photo_w_ = 400;
+        photo_h_ = 300;
     }
 
     void update(){
@@ -43,7 +48,7 @@ public:
     void draw(){
         if(enable_){
             ofSetColor(255, 255, 255, 250);
-	    	image_.draw(300, 400 + 800 * pos_, 400, 300);
+	    	image_.draw(center_x_ - photo_w_/2, center_y_ - photo_h_/2 + 800 * pos_, photo_w_, photo_h_);
             // printf("%f %f %f %f\n", local_counter_ / 30.0, pos_);
         }
     }
@@ -53,6 +58,11 @@ public:
     float duration1_;
     float duration2_;
     float duration3_;
+    int center_x_;
+    int center_y_;
+    int photo_w_;
+    int photo_h_;
+
     int local_counter_;
     float pos_;
 };
