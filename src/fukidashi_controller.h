@@ -5,7 +5,7 @@
 #include "ofxEasing.h"
 #include "ofxTrueTypeFontUC.h"
 
-enum class FukidashiType { N1R, N1L };
+enum class FukidashiType { N1R, N2R, N1L, N2L };
 
 class FukidashiController{
 public:
@@ -19,12 +19,26 @@ public:
         local_counter_ = 0;
         if(type == FukidashiType::N1R){
             image_.load("picture/hukidashi1_right.png");
+            fukidashi_x_ = 560;
+            fukidashi_y_ = 650;
+            fukidashi_w_ = 300;
+            fukidashi_h_ = 150;
+        }
+        else if(type == FukidashiType::N2R){
+            image_.load("picture/hukidashi1_right.png");
             fukidashi_x_ = 650;
             fukidashi_y_ = 650;
             fukidashi_w_ = 300;
             fukidashi_h_ = 150;
         }
         else if(type == FukidashiType::N1L){
+            image_.load("picture/hukidashi1_left.png");
+            fukidashi_x_ = 240;
+            fukidashi_y_ = 650;
+            fukidashi_w_ = 300;
+            fukidashi_h_ = 150;
+        }
+        else if(type == FukidashiType::N2L){
             image_.load("picture/hukidashi1_left.png");
             fukidashi_x_ = 150;
             fukidashi_y_ = 650;

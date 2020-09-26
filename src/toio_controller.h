@@ -36,41 +36,49 @@ public:
             std_msgs::String msg;
             msg.data = "G1";
             string_pub_.publish(msg);
+            circle_gray_target_ = 0.0;
         }
         else if(type == ToioMoveType::G2){
             std_msgs::String msg;
             msg.data = "G2";
             string_pub_.publish(msg);
+            circle_gray_target_ = 1.0;
         }
         else if(type == ToioMoveType::G3){
             std_msgs::String msg;
             msg.data = "G3";
             string_pub_.publish(msg);
+            circle_gray_target_ = 1.0;
         }
         else if(type == ToioMoveType::G4){
             std_msgs::String msg;
             msg.data = "G4";
             string_pub_.publish(msg);
+            circle_gray_target_ = 1.0;
         }
         else if(type == ToioMoveType::B1){
             std_msgs::String msg;
             msg.data = "B1";
             string_pub_.publish(msg);
+            circle_gray_target_ = 0.0;
         }
         else if(type == ToioMoveType::B2){
             std_msgs::String msg;
             msg.data = "B2";
             string_pub_.publish(msg);
+            circle_gray_target_ = 1.0;
         }
         else if(type == ToioMoveType::B3){
             std_msgs::String msg;
             msg.data = "B3";
             string_pub_.publish(msg);
+            circle_gray_target_ = 1.0;
         }
         else if(type == ToioMoveType::B4){
             std_msgs::String msg;
             msg.data = "B4";
             string_pub_.publish(msg);
+            circle_gray_target_ = 1.0;
         }
     }
 
@@ -88,15 +96,18 @@ public:
 
             circle_x_ = pos_x + vel_x * dt;
             circle_y_ = pos_y + vel_y * dt;
-            circle_gray_ = 1.0;
+
+            if(circle_gray_target_ > circle_gray_)circle_gray_ += 0.02;
+            else if(circle_gray_target_ < circle_gray_)circle_gray_ -= 0.02;
         }
     }
 
     void draw(){
         // ofEnableAlphaBlending();
         // ofEnableBlen/ddMode(OF_BLENDMODE_SCREEN);
-        // ofSetColor((int)(250*circle_gray_), (int)(250*circle_gray_), (int)(250*circle_gray_), 250);
-        ofSetColor(255, 255, 255);
+        ofSetColor((int)(250*circle_gray_), (int)(250*circle_gray_), (int)(250*circle_gray_), 250);
+        // ofSetColor(255, 255, 255);
+        ofSetColor(255, 255, 255, (int)(250*circle_gray_));
         ofCircle(circle_x_, circle_y_, 60); 
         float image_w = 160;
         float image_h = 160;
@@ -117,5 +128,6 @@ public:
     ofImage circle_image_;
     int circle_x_;
     int circle_y_;
+    float circle_gray_target_;
     float circle_gray_;
 };

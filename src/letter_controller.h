@@ -14,11 +14,11 @@ public:
 		shadow_image_.load("background/letter_shadow.png");
 		logo_image_.load("background/OurMemories.png");
 		duration1_ = 3.0;
-		duration2_ = 5.0;
+		duration2_ = 4.0;
 		duration3_ = 1.0;
 		logo_duration1_ = 3.5;
 		logo_duration2_ = 0.5;
-		logo_duration3_ = 3.0;
+		logo_duration3_ = 2.0;
 		logo_duration4_ = 1.0;
 	}
 

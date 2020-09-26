@@ -41,51 +41,97 @@ void ofApp::update(){
         toio_controller1_.setup(ToioMoveType::B1);
     }
     else if(global_counter_ == 1.0 * fps){
-        toio_controller0_.setup(ToioMoveType::G2);
-        toio_controller1_.setup(ToioMoveType::B2);
         letter_controller_.setup();
     }
-    else if(global_counter_ == 4.0 * fps){
+    else if(global_counter_ == 6.0 * fps){
+        toio_controller0_.setup(ToioMoveType::G2);
+        toio_controller1_.setup(ToioMoveType::B2);
+    }
+    else if(global_counter_ == 8.0 * fps){
         toio_controller0_.setup(ToioMoveType::G3);
         toio_controller1_.setup(ToioMoveType::B3);
     }
-	else if(global_counter_ == 7.0 * fps){
+	else if(global_counter_ == 10.0 * fps){
         fukidashi_controller0_.setup(FukidashiType::N1R, "こんにちは\nえりおです");
     }
-	else if(global_counter_ == 7.5 * fps){
+	else if(global_counter_ == 11.0 * fps){
         fukidashi_controller1_.setup(FukidashiType::N1L, "こんにちは\nいちこです");
     }
-	else if(global_counter_ == 10.0 * fps){
+	else if(global_counter_ == 13.0 * fps){
         fukidashi_controller0_.setup(FukidashiType::N1R, "ぼくたちの思い出を\n紹介します");
     }
-	else if(global_counter_ == 10.5 * fps){
+	else if(global_counter_ == 14.0 * fps){
         fukidashi_controller1_.setup(FukidashiType::N1L, "どうぞ\nごらんください");
     }
-    else if(global_counter_ == 14.0 * fps){
+    else if(global_counter_ == 17.0 * fps){
         toio_controller0_.setup(ToioMoveType::G4);
         toio_controller1_.setup(ToioMoveType::B4);
     }
-	else if(global_counter_ == 18.0 * fps){
+	else if(global_counter_ == 19.0 * fps){
         photo_controller_.setup("picture/pic_01.jpg");
         background_controller_.setup("background/spring.jpg");
-        toio_controller0_.setup(ToioMoveType::G3);
-        toio_controller1_.setup(ToioMoveType::B3);
     }
-	else if(global_counter_ == 19.0 * fps){
-        fukidashi_controller0_.setup(FukidashiType::N1R, "ミッフィーカフェ");
+	else if(global_counter_ == 20.0 * fps){
+        fukidashi_controller0_.setup(FukidashiType::N2R, "ミッフィーカフェ");
     }
-	else if(global_counter_ == 19.5 * fps){
-        fukidashi_controller1_.setup(FukidashiType::N1L, "ミッフィーのほうが\n高い.....");
+	else if(global_counter_ == 21.5 * fps){
+        fukidashi_controller1_.setup(FukidashiType::N2L, "ミッフィーのほうが\n高い.....");
     }
-	else if(global_counter_ == 23.0 * fps){
+	else if(global_counter_ == 25.0 * fps){
         photo_controller_.setup("picture/pic_02.jpg");
         background_controller_.setup("background/summer.jpg");
     }
-	else if(global_counter_ == 24.0 * fps){
-        fukidashi_controller0_.setup(FukidashiType::N1R, "闇のクレーンゲーム");
+	else if(global_counter_ == 26.0 * fps){
+        fukidashi_controller0_.setup(FukidashiType::N2R, "闇のクレーンゲーム");
     }
-	else if(global_counter_ == 24.5 * fps){
-        fukidashi_controller1_.setup(FukidashiType::N1L, "３０００円\n吸われました");
+	else if(global_counter_ == 27.5 * fps){
+        fukidashi_controller1_.setup(FukidashiType::N2L, "３０００円\n吸われました");
+    }
+	else if(global_counter_ == 31.0 * fps){
+        photo_controller_.setup("picture/pic_05.jpg");
+        background_controller_.setup("background/autum.jpg");
+    }
+	else if(global_counter_ == 32.0 * fps){
+        fukidashi_controller0_.setup(FukidashiType::N2R, "僕の卒様式");
+    }
+	else if(global_counter_ == 33.5 * fps){
+        fukidashi_controller1_.setup(FukidashiType::N2L, "なぜ私の写真...");
+    }
+	else if(global_counter_ == 37.0 * fps){
+        photo_controller_.setup("picture/pic_06.jpg");
+        background_controller_.setup("background/winter.png");
+    }
+	else if(global_counter_ == 38.0 * fps){
+        fukidashi_controller0_.setup(FukidashiType::N2R, "そしてこの度\n入籍しました");
+    }
+	else if(global_counter_ == 39.5 * fps){
+        fukidashi_controller1_.setup(FukidashiType::N2L, "やったね");
+    }
+    else if(global_counter_ == 43.0 * fps){
+        toio_controller0_.setup(ToioMoveType::G3);
+        toio_controller1_.setup(ToioMoveType::B3);
+    }
+	else if(global_counter_ == 44.0 * fps){
+        fukidashi_controller0_.setup(FukidashiType::N1R, "どれも楽しい\n思い出だったね");
+    }
+	else if(global_counter_ == 45.5 * fps){
+        fukidashi_controller1_.setup(FukidashiType::N1L, "引き続き2次会も\nお楽しみください");
+    }
+    else if(global_counter_ == 49.0 * fps){
+        background_controller_.setup("background/table.jpg");
+        toio_controller0_.setup(ToioMoveType::G2);
+        toio_controller1_.setup(ToioMoveType::B2);
+    }
+    else if(global_counter_ == 52.0 * fps){
+        toio_controller0_.setup(ToioMoveType::G2);
+        toio_controller1_.setup(ToioMoveType::B2);
+    }
+    else if(global_counter_ == 56.0 * fps){
+        toio_controller0_.setup(ToioMoveType::G1);
+        toio_controller1_.setup(ToioMoveType::B1);
+    }
+    else if(global_counter_ == 58.0 * fps){
+        background_controller_.setup("lines");
     }
 
     background_controller_.update();
@@ -111,10 +157,10 @@ void ofApp::draw(){
     background_controller_.draw();
     letter_controller_.draw();
     photo_controller_.draw();
-    fukidashi_controller0_.draw();
-    fukidashi_controller1_.draw();
     toio_controller0_.draw();
     toio_controller1_.draw();
+    fukidashi_controller0_.draw();
+    fukidashi_controller1_.draw();
     if(!play_){
         ofSetColor(255, 0, 0);
         ofCircle(400, 750, 30); 
