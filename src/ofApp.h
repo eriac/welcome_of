@@ -31,9 +31,11 @@ class ofApp : public ofBaseApp{
 		ofFbo fbo0_;
 		ofxQuadWarp warper1_;
 		ofFbo fbo1_;
+		bool warp_marker_;
 
 		int global_counter_;
 		bool play_;
+	    int fps_;
 
 		BackGroundController background_controller_;
 		LetterController letter_controller_;

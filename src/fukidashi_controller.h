@@ -18,7 +18,7 @@ public:
         text_ = text;
         local_counter_ = 0;
         if(type == FukidashiType::N1R){
-            image_.load("picture/hukidashi1_right.png");
+            image_.load("picture/hukidashi1_left.png");
             fukidashi_x_ = 560;
             fukidashi_y_ = 650;
             fukidashi_w_ = 300;
@@ -32,7 +32,7 @@ public:
             fukidashi_h_ = 150;
         }
         else if(type == FukidashiType::N1L){
-            image_.load("picture/hukidashi1_left.png");
+            image_.load("picture/hukidashi1_right.png");
             fukidashi_x_ = 240;
             fukidashi_y_ = 650;
             fukidashi_w_ = 300;

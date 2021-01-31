@@ -19,6 +19,12 @@ public:
             duration1_ = 2.0;
             rate_ = 0.0;
         }
+        else if(file_name == "black"){
+            type_ = 2;
+            image2_ptr_ = image1_ptr_;
+            duration1_ = 2.0;
+            rate_ = 0.0;
+        }
         else{
             type_ = 0;
             image2_ptr_ = image1_ptr_;
@@ -71,7 +77,6 @@ public:
             }
         }
         else if(type_ == 1){
-
             ofColor line_color;
             int span = 50;
             float threshold = 0.35;
@@ -125,6 +130,18 @@ public:
                 ofClear(0, 0, 0);
                 ofSetColor(255, 255, 255, (int)(255*(1.0-rate_)));
                 image1_ptr_->draw(0, 0, window_w_, window_h_);
+            }
+        }
+        if(type_ == 2){
+            if(move_){
+                ofClear(0, 0, 0);
+                if(image2_ptr_){
+                    ofSetColor(255, 255, 255, (int)(255*(1.0-rate_)));
+                    image2_ptr_->draw(0, 0, window_w_, window_h_);
+                }
+            }
+            else{
+                ofSetColor(0, 0, 0);
             }
         }
 

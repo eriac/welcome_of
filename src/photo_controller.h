@@ -9,18 +9,24 @@ class PhotoController{
 public:
     PhotoController(void){ }
 
-    void setup(std::string file_name){
+    void setup(std::string file_name, bool portrait = false){
         enable_ = true;
         local_counter_ = 0;
         image_.load(file_name);
-        duration1_ = 2.0;
-        duration2_ = 6.0;
-        duration3_ = 2.0;
+        duration1_ = 0.8;
+        duration2_ = 4.4;
+        duration3_ = 0.8;
 
         center_x_ = 400;
         center_y_ = 500;
-        photo_w_ = 400;
-        photo_h_ = 300;
+        if(portrait){
+            photo_w_ = 300;
+            photo_h_ = 400;
+        }
+        else{
+            photo_w_ = 400;
+            photo_h_ = 300;
+        }
     }
 
     void update(){
@@ -42,7 +48,6 @@ public:
                 enable_=false;
             }
         }
-        local_counter_++;
     }
 
     void draw(){

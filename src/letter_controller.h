@@ -2,17 +2,21 @@
 #include "ofMain.h"
 #include "ofxEasing.h"
 
+enum class LetterType { LOGO, END };
+
 class LetterController
 {
 public:
 	LetterController(void) {}
-	void setup()
+	void setup(LetterType type = LetterType::LOGO)
 	{
 		enable_ = true;
+		type_ = type;
 		local_counter_ = 0;
 		letter_image_.load("background/letter.png");
 		shadow_image_.load("background/letter_shadow.png");
 		logo_image_.load("background/OurMemories.png");
+		end_image_.load("background/end.png");
 		duration1_ = 3.0;
 		duration2_ = 4.0;
 		duration3_ = 1.0;
@@ -92,8 +96,12 @@ public:
 			int logo_w = 300;
 			int logo_h = 150;
 			ofSetColor(255, 255, 255, logo_alpha_ * 250);
-			logo_image_.draw((center_x-logo_w/2), (center_y-logo_h/2), logo_w, logo_h);
-
+			if(type_ == LetterType::LOGO){
+				logo_image_.draw((center_x-logo_w/2), (center_y-logo_h/2), logo_w, logo_h);
+			}
+			else if(type_ == LetterType::END){
+				end_image_.draw((center_x-logo_w/2), (center_y-logo_h/2), logo_w, logo_h);
+			}
 			// printf("%f %f %f %f\n", local_counter_ / 30.0, x_pos_, z_pos_, logo_alpha_);
 		}
 	}
@@ -105,6 +113,7 @@ private:
 	ofImage letter_image_;
 	ofImage shadow_image_;
 	ofImage logo_image_;
+	ofImage end_image_;
 	float x_pos_;
 	float z_pos_;
 	float logo_alpha_;
@@ -115,4 +124,5 @@ private:
 	float logo_duration2_;
 	float logo_duration3_;
 	float logo_duration4_;
+	LetterType type_;
 };
